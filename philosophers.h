@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:11:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/07 07:22:47 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:07:02 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ int	init_philo(t_philo **philo, t_data *data);
 int	destroy_forks(t_data *data, int i);
 int stop_philos(t_philo **philo, int i);
 void *routine(void *arg);
+
 #endif
