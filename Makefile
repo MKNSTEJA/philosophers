@@ -2,13 +2,13 @@ NAME    = philosophers
 
 # Compiler and flags.
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address
 LDFLAGS = -pthread
 
 # Source files in the project.
 SRC     = main.c \
 		  init.c libft_utils.c start.c routine.c parser.c\
-		
+			checker.c 
 # All source files.
 ALL_SRC = $(SRC)
 

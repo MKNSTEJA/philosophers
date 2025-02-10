@@ -6,14 +6,14 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:56:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/07 12:28:49 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:35:56 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 void	print_task(t_data *data, int id, char *action);
-void rest(int sleep_time);
+void	rest(int sleep_time);
 
 void	*routine(void *arg)
 {
@@ -46,11 +46,11 @@ void	print_task(t_data *data, int id, char *action)
 	pthread_mutex_unlock(&data->print_mutex);
 }
 
-void rest(int sleep_time)
+void	rest(int sleep_time)
 {
-    long time_stamp;
-    
-    time_stamp = get_timestamp();
-    while(get_timestamp() - time_stamp < sleep_time)
-        usleep(100);
+	long	time_stamp;
+
+	time_stamp = get_timestamp();
+	while (get_timestamp() - time_stamp < sleep_time)
+		usleep(100);
 }

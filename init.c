@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 06:38:48 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/07 07:23:07 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:54:58 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_forks(t_data *data)
 	return (0);
 }
 
-int	init_philo(t_philo **philo, t_data *data)
+int	init_philos(t_philo **philo, t_data *data)
 {
 	int	i;
 

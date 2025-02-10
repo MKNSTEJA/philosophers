@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 07:11:09 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/07 07:31:08 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:01:28 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	start_philos(t_philo **philo, t_data *data)
 	while (i < data->num)
 	{
 		if (!pthread_create(&(*philo)[i].thread, NULL, routine,
-				(void *)&(*philo)[i]))
+				(void *)&((*philo)[i])))
 			return (stop_philos(philo, i));
 		i++;
 	}
 	i = 0;
 	while (i < data->num)
 	{
-		pthread_join(&(*philo)[i].thread, NULL);
+		pthread_join((*philo)[i].thread, NULL);
 		i++;
 	}
 	return (0);
