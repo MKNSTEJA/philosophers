@@ -6,11 +6,25 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 06:24:53 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/07 06:25:00 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:15:51 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	ft_bzero(void *string, size_t range)
+{
+	size_t			i;
+	unsigned char	*str;
+
+	str = (unsigned char *)string;
+	i = 0;
+	while (i < range)
+	{
+		str[i] = 0;
+		i++;
+	}
+}
 
 int	ft_atoi(char *str)
 {
@@ -36,4 +50,15 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (answer * neg);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*pointer;
+
+	pointer = malloc(size * nmemb);
+	if (pointer == NULL)
+		return (NULL);
+	ft_bzero(pointer, nmemb * size);
+	return (pointer);
 }

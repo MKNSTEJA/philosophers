@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:56:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/10 12:35:56 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:02:03 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,28 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->data->stop == 0)
 	{
-		pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
-		print_task(philo->data, philo->id, "has taken a fork");
-		pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
-		print_task(philo->data, philo->id, "has taken a fork");
+		// pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
+		// print_task(philo->data, philo->id, "has taken a fork");
+		// pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
+		// print_task(philo->data, philo->id, "has taken a fork");
+		if (philo->id % 2 == 0)
+		{
+			pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
+			print_task(philo->data, philo->id, "has taken a fork");
+			pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
+			print_task(philo->data, philo->id, "has taken a fork");
+		}
+		else
+		{
+			pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
+			print_task(philo->data, philo->id, "has taken a fork");
+			pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
+			print_task(philo->data, philo->id, "has taken a fork");
+		}
 		print_task(philo->data, philo->id, "is eating");
 		philo->last_meal_time = get_timestamp();
 		rest(philo->data->time_to_eat);
-		philo->meal_count = philo->meal_count++;
+		philo->meal_count++;
 		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 		pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 		print_task(philo->data, philo->id, "is sleeping");
@@ -52,5 +66,5 @@ void	rest(int sleep_time)
 
 	time_stamp = get_timestamp();
 	while (get_timestamp() - time_stamp < sleep_time)
-		usleep(100);
+		usleep(500);
 }

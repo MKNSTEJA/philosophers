@@ -1,4 +1,4 @@
-NAME    = philosophers
+NAME    = philo
 
 # Compiler and flags.
 CC      = cc

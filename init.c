@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 06:38:48 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/10 12:54:58 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:55:19 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	init_philos(t_philo **philo, t_data *data)
 		printf("Error with allocation for philo\n");
 		return (-1);
 	}
+	(*philo)->data = data;
 	while (i < (*philo)->data->num)
 	{
 		(*philo)[i].id = i + 1;
