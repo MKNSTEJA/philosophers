@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:37:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 11:07:29 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:07:23 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ret = start_philos(&philos, &data);
+	printf("passes 1\n");
 	pthread_join(monitor_thread, NULL);
+	printf("passes 2\n");
 	cleanup(philos, data);
+	printf("passes 3\n");
 	return (0);
 }
 
@@ -52,6 +55,7 @@ void	cleanup(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->num)
 	{
+		printf("stuck in cleanup\n");
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}

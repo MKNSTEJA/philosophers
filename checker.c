@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:55:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 13:35:52 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:06:00 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*fbi(void *arg)
 			break ;
 		usleep(100);
 	}
+	printf("stuck in fbi?\n");
 	return ((void *)0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:56:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 14:02:03 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:47:53 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	*routine(void *arg)
 		// print_task(philo->data, philo->id, "has taken a fork");
 		// pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
 		// print_task(philo->data, philo->id, "has taken a fork");
-		if (philo->id % 2 == 0)
+		if (philo->id < philo->data->num)
 		{
 			pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
 			print_task(philo->data, philo->id, "has taken a fork");
 			pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
 			print_task(philo->data, philo->id, "has taken a fork");
 		}
-		else
+		else if(philo->id == philo->data->num)
 		{
 			pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
 			print_task(philo->data, philo->id, "has taken a fork");
@@ -49,6 +49,7 @@ void	*routine(void *arg)
 		print_task(philo->data, philo->id, "is sleeping");
 		rest(philo->data->time_to_sleep);
 		print_task(philo->data, philo->id, "is thinking");
+		usleep(500);
 	}
 	return ((void *)0);
 }
@@ -66,5 +67,5 @@ void	rest(int sleep_time)
 
 	time_stamp = get_timestamp();
 	while (get_timestamp() - time_stamp < sleep_time)
-		usleep(500);
+		usleep(300);
 }
