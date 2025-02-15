@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:56:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 19:44:02 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:04:34 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if(philo->id % 2 == 0 || philo->id == philo->data->num)
-  {
+	if(philo->data->num == 1)
+	{
+		print_task(philo->data, philo->id, "is sleeping");
+		rest(philo->data->time_to_die, philo);
+		usleep(100);
+	}
+	else if(philo->id % 2 == 0 || philo->id == philo->data->num)
+	{
 		print_task(philo->data, philo->id, "is thinking");
-    rest(philo->data->time_to_eat, philo);
-  }
-	while (1)
+		rest(philo->data->time_to_eat, philo);
+	}
+	while (1 && philo->data->num > 1)
 	{
 		// if(rip_checker(philo->data) != 0)
 		// 	break;
-		usleep(1000);
+		// usleep(1000);
 		int rip = rip_checker(philo->data);
 		// printf("rip: %d, id: %d, stop: %d\n", rip, philo->id, philo->data->stop);
 		if(rip != 0)

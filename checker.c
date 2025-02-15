@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:55:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 19:42:29 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:06:33 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_philosophers(t_philo *philos)
 	long	timestamp;
 
 	data = philos[0].data;
-	i = 1;
+	i = 0;
 	max_meals_done = 1;
 	while (i < data->num)
 	{
@@ -68,8 +68,8 @@ int	wasted(t_philo *philos, t_data *data, long timestamp, int i)
 	pthread_mutex_lock(&data->print_mutex);
 	if (timestamp - philos->last_meal_time > data->time_to_die)
 	{
-		printf("%ld - %ld > %d\n", timestamp, philos->last_meal_time,
-			data->time_to_die);
+		// printf("%ld - %ld > %d\n", timestamp, philos->last_meal_time,
+			// data->time_to_die);
 		printf("%ld %d died\n", timestamp - data->start_time, philos->id);
 		pthread_mutex_lock(&data->lock_stop);
 		data->stop = 1;
