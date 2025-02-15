@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:11:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 19:32:46 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:00:26 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void				increment_meal_count(t_philo *philo);
 5 800 200 200 7
 1 400 100 100
 3 210 100 100
+200 400 200 200 (died -> nothing after that)
 Extreme edge case: 200 130 60 60 10
 */
