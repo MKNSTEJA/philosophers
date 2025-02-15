@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:05:33 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 10:14:05 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:17:14 by mknsteja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	parse_info(t_data *data, char **argv, int argc)
 {
-	int	i;
-
-	i = 0;
 	data->num = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
