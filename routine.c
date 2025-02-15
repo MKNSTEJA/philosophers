@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:56:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 20:04:34 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:15:08 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	*routine(void *arg)
 
 void	print_task(t_data *data, int id, char *action)
 {
-
+	if(rip_checker(data) != 0)
+		return;
 	// printf("philo trying to print that \"%s\"\n", action);
 	pthread_mutex_lock(&data->print_mutex);
 	// printf("philo%d locked print\n", id);

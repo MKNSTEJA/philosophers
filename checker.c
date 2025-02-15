@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:55:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 20:06:33 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:12:58 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_philosophers(t_philo *philos)
 			max_meals_done = 0;
 		i++;
 	}
-	if (data->must_eat != -1 && max_meals_done == data->num)
+	if (data->must_eat != -1 && max_meals_done == 1)
 	{
 		pthread_mutex_lock(&data->lock_stop);
 		data->stop = 1;
