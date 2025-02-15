@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:37:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 12:29:11 by mknsteja         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:18:00 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ret = pthread_create(&monitor_thread, NULL, fbi, (void *)philos);
+	printf("passes 0\n");
 	if (ret != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
@@ -57,6 +58,7 @@ void	cleanup(t_philo *philos, t_data *data)
 	{
 		printf("stuck in cleanup\n");
 		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&philos[i].lock_meal_count);
 		i++;
 	}
 	pthread_mutex_destroy(&data->print_mutex);

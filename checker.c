@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:55:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 12:31:36 by mknsteja         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:38:19 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_philosophers(t_philo *philos);
+int		wasted(t_philo *philos, t_data *data, long timestamp, int i);
+
+int		check_philosophers(t_philo *philos);
 
 void	*fbi(void *arg)
 {
@@ -21,7 +23,7 @@ void	*fbi(void *arg)
 
 	philos = (t_philo *)arg;
 	data = philos[0].data;
-	while (data->stop == 0)
+	while (!rip_checker(data))
 	{
 		if (check_philosophers(philos) == -1)
 			break ;
@@ -39,25 +41,44 @@ int	check_philosophers(t_philo *philos)
 	long	timestamp;
 
 	data = philos[0].data;
-	i = 0;
+	i = 1;
 	max_meals_done = 1;
 	while (i < data->num)
 	{
 		timestamp = get_timestamp();
-		pthread_mutex_lock(&data->print_mutex);
-		if (timestamp - philos[i].last_meal_time > data->time_to_die)
-		{
-			printf("%ld - %ld > %d\n", timestamp, philos[i].last_meal_time, data->time_to_die);
-			printf("%ld %d died\n", timestamp - data->start_time, philos[i].id);
-			data->stop = 1;
+		if (wasted(&philos[i], philos[i].data, timestamp, i) == -1)
 			return (-1);
-		}
-		pthread_mutex_unlock(&data->print_mutex);
 		if (data->must_eat != -1 && philos[i].meal_count < data->must_eat)
 			max_meals_done = 0;
 		i++;
 	}
 	if (data->must_eat != -1 && max_meals_done == data->num)
+	{
+		pthread_mutex_lock(&data->lock_stop);
 		data->stop = 1;
+		pthread_mutex_unlock(&data->lock_stop);
+	}
+	return (0);
+}
+
+int	wasted(t_philo *philos, t_data *data, long timestamp, int i)
+{
+	(void)i;
+	pthread_mutex_lock(&philos->lock_last_meal_time);
+	pthread_mutex_lock(&data->print_mutex);
+	if (timestamp - philos->last_meal_time > data->time_to_die)
+	{
+		printf("%ld - %ld > %d\n", timestamp, philos->last_meal_time,
+			data->time_to_die);
+		printf("%ld %d died\n", timestamp - data->start_time, philos->id);
+		pthread_mutex_lock(&data->lock_stop);
+		data->stop = 1;
+		pthread_mutex_unlock(&data->lock_stop);
+		pthread_mutex_unlock(&philos->lock_last_meal_time);
+		pthread_mutex_unlock(&data->print_mutex);
+		return (-1);
+	}
+	pthread_mutex_unlock(&data->print_mutex);
+	pthread_mutex_unlock(&philos->lock_last_meal_time);
 	return (0);
 }
