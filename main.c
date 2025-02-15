@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:37:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 15:18:00 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:42:44 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ret = pthread_create(&monitor_thread, NULL, fbi, (void *)philos);
-	printf("passes 0\n");
+	// printf("passes 0\n");
 	if (ret != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
@@ -41,11 +41,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ret = start_philos(&philos, &data);
-	printf("passes 1\n");
+	// printf("passes 1\n");
 	pthread_join(monitor_thread, NULL);
-	printf("passes 2\n");
+	// printf("passes 2\n");
 	cleanup(philos, data);
-	printf("passes 3\n");
+	// printf("passes 3\n");
 	return (0);
 }
 
@@ -56,7 +56,7 @@ void	cleanup(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->num)
 	{
-		printf("stuck in cleanup\n");
+		// printf("stuck in cleanup\n");
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&philos[i].lock_meal_count);
 		i++;
