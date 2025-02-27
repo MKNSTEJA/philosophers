@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <pthread.h>
 
 void	cleanup(t_philo *philos, t_data *data);
 
@@ -45,7 +46,10 @@ int	main(int argc, char **argv)
 	pthread_join(monitor_thread, NULL);
 	// printf("passes 2\n");
 	cleanup(philos, data);
+  free(data);
+  data = NULL;
 	// printf("passes 3\n");
+  // system("leaks philo");
 	return (0);
 }
 
@@ -59,9 +63,11 @@ void	cleanup(t_philo *philos, t_data *data)
 		// printf("stuck in cleanup\n");
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&philos[i].lock_meal_count);
+    pthread_mutex_destroy(&philos[i].lock_last_meal_time);
 		i++;
 	}
 	pthread_mutex_destroy(&data->print_mutex);
+  pthread_mutex_destroy(&data->lock_stop);
 	free(data->forks);
 	data->forks = NULL;
 	free(philos);

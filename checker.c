@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <pthread.h>
 
 int		wasted(t_philo *philos, t_data *data, long timestamp, int i);
 
@@ -48,8 +49,10 @@ int	check_philosophers(t_philo *philos)
 		timestamp = get_timestamp();
 		if (wasted(&philos[i], philos[i].data, timestamp, i) == -1)
 			return (-1);
+    pthread_mutex_lock(&philos[i].lock_meal_count);
 		if (data->must_eat != -1 && philos[i].meal_count < data->must_eat)
 			max_meals_done = 0;
+    pthread_mutex_unlock(&philos[i].lock_meal_count);
 		i++;
 	}
 	if (data->must_eat != -1 && max_meals_done == 1)

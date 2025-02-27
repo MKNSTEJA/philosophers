@@ -33,14 +33,14 @@ void	*routine(void *arg)
 	}
 	while (1 && philo->data->num > 1)
 	{
-		// if(rip_checker(philo->data) != 0)
-		// 	break;
-		// usleep(1000);
-		int rip = rip_checker(philo->data);
-		// printf("rip: %d, id: %d, stop: %d\n", rip, philo->id, philo->data->stop);
-		if(rip != 0)
+		if(rip_checker(philo->data) != 0)
 			break;
-		if (philo->id < philo->data->num && !rip)
+		// usleep(1000);
+		// int rip = rip_checker(philo->data);
+		// printf("rip: %d, id: %d, stop: %d\n", rip, philo->id, philo->data->stop);
+		// if(rip != 0)
+		// 	break;
+		if (philo->id < philo->data->num && !rip_checker(philo->data))
 		{
 			// printf("philo%d trying to lock left fork\n", philo->id);
 			pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
@@ -60,7 +60,7 @@ void	*routine(void *arg)
 			pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 			// printf("philo%d done unlocking forks\n", philo->id);
 		}
-		else if(philo->id == philo->data->num && !rip)
+		else if(philo->id == philo->data->num && !rip_checker(philo->data))
 		{
 			// printf("philo%d trying to lock right fork\n", philo->id);
 			pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
@@ -81,14 +81,10 @@ void	*routine(void *arg)
 			// printf("philo%d done unlocking forks\n", philo->id);
 
 		}
-		if(rip != 0)
-			break;
 		print_task(philo->data, philo->id, "is sleeping");
 		rest(philo->data->time_to_sleep, philo);
 		print_task(philo->data, philo->id, "is thinking");
     	// printf("id: %d stop: %d\n", philo->id, philo->data->stop);
-		if(rip != 0)
-			break;
 	}
 	// printf("stuck in routine? \n");
 	return ((void *)0);

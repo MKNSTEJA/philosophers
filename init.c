@@ -32,7 +32,7 @@ int	init_philos(t_philo **philo, t_data *data)
 	int	i;
 
 	i = 0;
-	(*philo) = malloc(sizeof(t_philo) * (data->num));
+	(*philo) = ft_calloc(data->num, sizeof(t_philo));
 	if (!(*philo))
 	{
 		printf("Error with allocation for philo\n");
@@ -45,13 +45,13 @@ int	init_philos(t_philo **philo, t_data *data)
 		(*philo)[i].data = data;
 		(*philo)[i].last_meal_time = data->start_time;
 		(*philo)[i].left_fork = i;
-		(*philo)[i].right_fork = (i + 1) % (data->num);
+		if(pthread_mutex_init(&(*philo)[i].lock_meal_count, NULL) != 0)
+		  return (-1);
+	  if(pthread_mutex_init(&(*philo)[i].lock_last_meal_time, NULL) != 0)
+		  return (-1);	
+    (*philo)[i].right_fork = (i + 1) % (data->num);
 		i++;
 	}
-	if(pthread_mutex_init(&(*philo)->lock_meal_count, NULL) != 0)
-		return (-1);
-	if(pthread_mutex_init(&(*philo)->lock_meal_count, NULL) != 0)
-		return (-1);
 	return (0);
 }
 

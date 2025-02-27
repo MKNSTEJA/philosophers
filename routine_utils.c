@@ -19,7 +19,7 @@ int	rip_checker(t_data *data)
 	val = 0;
 	pthread_mutex_lock(&data->lock_stop);
 	if (data->stop != 0)
-		val = -1;
+		val = 1;
 	pthread_mutex_unlock(&data->lock_stop);
 	return (val);
 }
