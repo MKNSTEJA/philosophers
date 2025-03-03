@@ -28,7 +28,6 @@ void	*fbi(void *arg)
 	{
 		if (check_philosophers(philos) == -1)
 			break ;
-		usleep(100);
 	}
 	// printf("stuck in fbi?\n");
 	return ((void *)0);
@@ -41,8 +40,8 @@ int	check_philosophers(t_philo *philos)
 	int		max_meals_done;
 	long	timestamp;
 
-	data = philos[0].data;
 	i = 0;
+	data = philos[0].data;
 	max_meals_done = 1;
 	while (i < data->num)
 	{

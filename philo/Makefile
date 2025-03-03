@@ -2,7 +2,7 @@ NAME    = philo
 
 # Compiler and flags.
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=thread
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread
 LDFLAGS = -pthread
 
 # Source files in the project.

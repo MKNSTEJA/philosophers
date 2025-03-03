@@ -16,8 +16,8 @@ int	start_philos(t_philo **philo, t_data **data)
 {
 	int	i;
 
-	if (init_forks((*data)) < 0)
-		return (printf("Error with init_forks\n"), -1);
+	// if (init_forks((*data)) < 0)
+	// 	return (printf("Error with init_forks\n"), -1);
 	i = 0;
 	while (i < (*data)->num)
 	{

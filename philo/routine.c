@@ -22,20 +22,21 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if(philo->data->num == 1)
 	{
-		print_task(philo->data, philo->id, "is sleeping");
+		print_task(philo->data, philo->id, "is thinking");
 		rest(philo->data->time_to_die, philo);
-		usleep(100);
+		usleep(1000);
+    return (NULL);
 	}
 	else if(philo->id % 2 == 0 || philo->id == philo->data->num)
 	{
 		print_task(philo->data, philo->id, "is thinking");
 		rest(philo->data->time_to_eat, philo);
+    usleep(100);
 	}
 	while (1 && philo->data->num > 1)
 	{
 		if(rip_checker(philo->data) != 0)
 			break;
-		// usleep(1000);
 		// int rip = rip_checker(philo->data);
 		// printf("rip: %d, id: %d, stop: %d\n", rip, philo->id, philo->data->stop);
 		// if(rip != 0)
