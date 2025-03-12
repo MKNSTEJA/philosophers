@@ -69,6 +69,8 @@ void				*ft_calloc(size_t nmemb, size_t size);
 void				*fbi(void *arg);
 int					rip_checker(t_data *data);
 void				increment_meal_count(t_philo *philo);
+void        print_task(t_data *data, int id, char *action);
+void        rest(int sleep_time, t_philo *philo);
 #endif
 
 /*

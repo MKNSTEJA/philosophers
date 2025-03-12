@@ -29,12 +29,8 @@ int	main(int argc, char **argv)
 	if (init_data(data) != 0)
 		return (1);
 	if (init_philos(&philos, data) != 0)
-	{
-		free(data->forks);
-		return (1);
-	}
+		return (free(data->forks), 1);
 	ret = pthread_create(&monitor_thread, NULL, fbi, (void *)philos);
-	// printf("passes 0\n");
 	if (ret != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
@@ -42,14 +38,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ret = start_philos(&philos, &data);
-	// printf("passes 1\n");
 	pthread_join(monitor_thread, NULL);
-	// printf("passes 2\n");
 	cleanup(philos, data);
   free(data);
   data = NULL;
-	// printf("passes 3\n");
-  // system("leaks philo");
 	return (0);
 }
 
@@ -60,7 +52,6 @@ void	cleanup(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->num)
 	{
-		// printf("stuck in cleanup\n");
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&philos[i].lock_meal_count);
     pthread_mutex_destroy(&philos[i].lock_last_meal_time);
