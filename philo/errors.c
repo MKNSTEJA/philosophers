@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:49:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/02 17:54:00 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:12:15 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,19 @@ int	num_checker(char *str)
 
 int	integer_checker(char *str)
 {
-	if (ft_strlen(str) >= 10)
+	int	len;
+
+	while (*str == '0' && ft_strlen(str) > 1)
+		str++;
+	len = ft_strlen(str);
+	if (len > 10)
 	{
-		if (ft_strncmp(str, "2147483647", ft_strlen("2147483647")) > 0)
+		printf("Only integers!\n");
+		return (-1);
+	}
+	else if (len == 10)
+	{
+		if (ft_strncmp(str, "2147483647", 10) > 0)
 		{
 			printf("Only integers!\n");
 			return (-1);
