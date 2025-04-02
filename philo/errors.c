@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:49:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/02 15:46:44 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:22:12 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	errors(int argc, char **argv)
 			printf("Invalid input!\n");
 			return (-1);
 		}
+		if (ft_strncmp(argv[i], "2147483647", ft_strlen("2147483647")) > 0)
+			return (printf("Only integers!\n"), -1);
 		i++;
 	}
 	return (0);
