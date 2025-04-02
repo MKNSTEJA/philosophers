@@ -12,7 +12,7 @@ SRC     = main.c \
 # All source files.
 ALL_SRC = $(SRC)
 
-# Object files (will be created in the same directory).
+# Object files.
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -26,7 +26,7 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
