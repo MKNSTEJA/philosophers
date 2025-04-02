@@ -9,6 +9,7 @@ LDFLAGS = -pthread
 SRC     = main.c \
 		  init.c libft_utils.c start.c routine.c parser.c\
 			checker.c routine_utils.c errors.c
+
 # All source files.
 ALL_SRC = $(SRC)
 

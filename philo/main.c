@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:37:29 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/02 16:12:10 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:51:02 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	if (ret != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
-		return (cleanup(philos, data), 1);
+		return (cleanup(philos, data), -1);
 	}
 	ret = start_philos(&philos, &data);
 	pthread_join(monitor_thread, NULL);
