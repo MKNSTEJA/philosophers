@@ -6,13 +6,14 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:49:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/02 16:22:12 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:54:00 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 int	num_checker(char *str);
+int	integer_checker(char *str);
 
 int	errors(int argc, char **argv)
 {
@@ -35,8 +36,8 @@ int	errors(int argc, char **argv)
 			printf("Invalid input!\n");
 			return (-1);
 		}
-		if (ft_strncmp(argv[i], "2147483647", ft_strlen("2147483647")) > 0)
-			return (printf("Only integers!\n"), -1);
+		if (integer_checker(argv[i]) == -1)
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -52,6 +53,19 @@ int	num_checker(char *str)
 		if (!(str[j] >= '0' && str[j] <= '9'))
 			return (-1);
 		j++;
+	}
+	return (0);
+}
+
+int	integer_checker(char *str)
+{
+	if (ft_strlen(str) >= 10)
+	{
+		if (ft_strncmp(str, "2147483647", ft_strlen("2147483647")) > 0)
+		{
+			printf("Only integers!\n");
+			return (-1);
+		}
 	}
 	return (0);
 }
