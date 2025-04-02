@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 07:11:09 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 11:07:01 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:15:46 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	start_philos(t_philo **philo, t_data **data)
 {
 	int	i;
 
-	// if (init_forks((*data)) < 0)
-	// 	return (printf("Error with init_forks\n"), -1);
+	if (init_forks((*data)) < 0)
+		return (printf("Error with init_forks\n"), -1);
 	i = 0;
 	while (i < (*data)->num)
 	{
 		if (pthread_create(&(*philo)[i].thread, NULL, routine,
-				(void *)&((*philo)[i])) != 0)
+			(void *)&((*philo)[i])) != 0)
 			return (stop_philos(philo, i));
 		i++;
 	}

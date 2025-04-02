@@ -2,25 +2,27 @@ NAME    = philo
 
 # Compiler and flags.
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=thread
 LDFLAGS = -pthread
 
 # Source files in the project.
 SRC     = main.c \
 		  init.c libft_utils.c start.c routine.c parser.c\
-			checker.c routine_utils.c
+			checker.c routine_utils.c errors.c
 # All source files.
 ALL_SRC = $(SRC)
 
 # Object files (will be created in the same directory).
-OBJ     = $(ALL_SRC:.c=.o)
+OBJ_DIR = obj
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)/$(dir $<)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:11:02 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/15 21:00:26 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:26:46 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ typedef struct s_philo
 	int				right_fork;
 	pthread_mutex_t	lock_meal_count;
 	long			last_meal_time;
-	pthread_mutex_t lock_last_meal_time;
+	pthread_mutex_t	lock_last_meal_time;
 	int				meal_count;
 	t_data			*data;
 }					t_philo;
 
+int					errors(int argc, char **argv);
+int					ft_strlen(const char *string);
 int					ft_atoi(char *str);
+int					ft_strncmp(char *s1, char *s2, unsigned int n);
 long				get_timestamp(void);
 int					init_forks(t_data *data);
 int					init_philos(t_philo **philo, t_data *data);
@@ -69,8 +72,8 @@ void				*ft_calloc(size_t nmemb, size_t size);
 void				*fbi(void *arg);
 int					rip_checker(t_data *data);
 void				increment_meal_count(t_philo *philo);
-void        print_task(t_data *data, int id, char *action);
-void        rest(int sleep_time, t_philo *philo);
+void				print_task(t_data *data, int id, char *action);
+void				rest(int sleep_time, t_philo *philo);
 #endif
 
 /*

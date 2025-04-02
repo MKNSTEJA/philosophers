@@ -6,11 +6,23 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 06:24:53 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/02/11 10:15:51 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:26:22 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_strlen(const char *string)
+{
+	int	length;
+
+	length = 0;
+	while (string[length])
+	{
+		length++;
+	}
+	return (length);
+}
 
 void	ft_bzero(void *string, size_t range)
 {
@@ -61,4 +73,22 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ft_bzero(pointer, nmemb * size);
 	return (pointer);
+}
+
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
+{
+	unsigned int	m;
+
+	m = 0;
+	if (n == 0)
+	{
+		return (0);
+	}
+	while (((s1[m] != '\0') || (s2[m] != '\0')) && (m < n))
+	{
+		if (s1[m] != s2[m])
+			return ((unsigned char)s1[m] - (unsigned char)s2[m]);
+		m++;
+	}
+	return (0);
 }
