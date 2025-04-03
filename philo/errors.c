@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:49:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/02 18:20:55 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/03 09:28:14 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	errors(int argc, char **argv)
 		printf("Invalid number of arguments!\n");
 		return (-1);
 	}
-	if (num < 0 || num > 200)
+	if (num <= 0 || num > 200)
 		return (printf("Invalid number of philos!\n"), -1);
 	while (i < argc)
 	{
